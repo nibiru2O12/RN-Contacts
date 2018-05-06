@@ -5,14 +5,10 @@ import {StackNavigator} from 'react-navigation';
 import ContactNav from './navigations/Contacts';
 
 const RootNav = StackNavigator({
-  Contacts : { screen : ContactNav}
+  ContactStack : { screen : ContactNav}
 },{
-  initialRouteName:"Contacts",
+  initialRouteName:"ContactStack",
   headerMode:"none",
-  navigationOptions: {
-    headerBackground:"black",
-    headerTintColor:"white",
-  }
 });
 
 export default class App extends React.Component {

@@ -2,10 +2,16 @@ import React,{Component} from 'react'
 import {View,Text,StyleSheet} from 'react-native';
 import {Container,List,ListItem} from 'native-base';
 
+import HeaderButton from '../../UI/HeaderButton';
+
 class ContactList extends Component {
 
-  static navigationOptions = {
-    headerTitle: "Contacts"
+  static navigationOptions = ({navigation}) => {
+    console.log(navigation);
+    return ({
+      headerTitle: "Contacts",
+      headerRight:<HeaderButton title="+" onPress={()=>navigation.navigate("ContactNew")}  />
+    })
   }
 
   state = {
@@ -32,8 +38,12 @@ class ContactList extends Component {
 
   render(){
 
+    const {navigation} = this.props;
+
     const list = this.state.contacts.map((contact)=>(
-      <ListItem key={contact.mobile}>
+      <ListItem 
+        key={contact.mobile} 
+        onPress={()=>navigation.navigate('Contact',{contact})}>
         <Text>{contact.name}</Text>
       </ListItem>
     ))
