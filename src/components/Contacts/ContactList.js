@@ -1,16 +1,19 @@
 import React,{Component} from 'react'
 import {View,Text,StyleSheet} from 'react-native';
-import {Container,List,ListItem} from 'native-base';
+import {Container,List,ListItem,Icon} from 'native-base';
 
 import HeaderButton from '../../UI/HeaderButton';
 
 class ContactList extends Component {
 
   static navigationOptions = ({navigation}) => {
-    console.log(navigation);
     return ({
       headerTitle: "Contacts",
-      headerRight:<HeaderButton title="+" onPress={()=>navigation.navigate("ContactNew")}  />
+      headerRight:(
+        <HeaderButton 
+          title={<Icon name="md-add" style={{color:"green"}}  />} 
+          onPress={()=>navigation.navigate("ContactNew",{addContact:navigation.state.params.addContact})}
+        />)  
     })
   }
 
@@ -34,6 +37,18 @@ class ContactList extends Component {
         mobile:"0999669999"
       },
     ]
+  }
+
+  componentDidMount(){
+    this.props.navigation.setParams({
+      addContact : this._addContact
+    })
+  }
+
+  _addContact = contact => {
+    const contacts = [...this.state.contacts];
+    contacts.push(contact);
+    this.setState({contacts})
   }
 
   render(){
