@@ -11,7 +11,7 @@ class ContactEditable extends Component{
       headerRight: (
         <View style={{flexDirection:"row"}}>
           <HeaderButton 
-            component={<Icon name='md-close' style={{color:"red"}}/>}
+            component={<Icon name='md-close' style={{color:"white"}}/>}
             onPress={()=>{
               Alert.alert(
                 'Cancel',
@@ -22,8 +22,9 @@ class ContactEditable extends Component{
                 ]
               )
             }} />
+            
           <HeaderButton 
-            component={<Icon name='md-checkmark' style={{color:"green"}}/>}
+            component={<Icon name='md-checkmark' style={{color:"white"}}/>}
             onPress={()=>{
               Alert.alert(
                 'Save',
@@ -54,6 +55,7 @@ class ContactEditable extends Component{
   _addContact = contact => {
     const{navigation} = this.props;
     const {name,email,mobile} = this.state;
+    
     navigation.state.params.addContact({name,email,mobile}); 
     navigation.goBack();
   }
