@@ -10,7 +10,9 @@ import ContactEditable from '../components/Contacts/ContactEditable';
 const ContactNav = StackNavigator({
   ContactList : { screen : ContactList },
   Contact: {screen:Contact},
-  ContactNew:{screen:ContactEditable}
+  ContactNew:{screen:()=><ContactEditable savetype="Add" />},
+  ContactEdit:{screen:()=><ContactEditable savetype="Edit" />}
+  
 },{
   initialRouteName : "ContactList",
   navigationOptions: ({navigation})=>({
